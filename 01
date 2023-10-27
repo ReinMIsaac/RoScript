@@ -1,5 +1,5 @@
 var path = @"C:\data\sprite\몬스터"; // ที่อยู่ไฟล์
-var mag = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ใช้ทศนิยมไม่ได้
+var mag = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ใช้เลขต่ำกว่า 1 ไม่ได้
 
 // ถ้าไม่ใช้อันไหนก็ลบทิ้งทั้งก้อน
 foreach (var actFile in Directory.GetFiles(path, "*.act")) {
