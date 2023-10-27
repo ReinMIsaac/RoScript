@@ -5,6 +5,7 @@ var mag = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ใ�
 foreach (var actFile in Directory.GetFiles(path, "*.act")) {
     var sprFile = actFile.ReplaceExtension(".spr");
     var act2 = new Act(actFile, sprFile);
+
     // ลบ ทุก Frame เว้น Frame แรก
     for (int aid = 0; aid < act2.Actions.Count; aid++) {
         for (int fid = act2.Actions[aid].Frames.Count - 1; fid >= 1; fid--) {
