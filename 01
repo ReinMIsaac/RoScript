@@ -1,10 +1,12 @@
 var path = @"C:\data\sprite\몬스터"; // ที่อยู่ไฟล์
-var mag = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ใช้เลขต่ำกว่า 1 ไม่ได้
+var m = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ต่ำกว่า 0 = ลดขนาด
 
-// ถ้าไม่ใช้อันไหนก็ลบทิ้งทั้งก้อน
 foreach (var actFile in Directory.GetFiles(path, "*.act")) {
     var sprFile = actFile.ReplaceExtension(".spr");
     var act2 = new Act(actFile, sprFile);
+    var jx = act2[0,0,0].OffsetX;
+    var jy = act2[0,0,0].OffsetY;
+    var mag = (float)m;
 
     // ลบ ทุก Frame เว้น Frame แรก
     for (int aid = 0; aid < act2.Actions.Count; aid++) {
@@ -23,7 +25,7 @@ foreach (var actFile in Directory.GetFiles(path, "*.act")) {
         action.Frames = new List<Frame> { new Frame() };
     });
     // ปรับให้ใช้ sprite 0 ทุก layer
-        foreach (Layer layer in act2.GetAllLayers()) {
+    foreach (Layer layer in act2.GetAllLayers()) {
         layer.SpriteIndex = 0;
     }
     // ลบ sprite ไม่จำเป็นทิ้ง
@@ -32,10 +34,10 @@ foreach (var actFile in Directory.GetFiles(path, "*.act")) {
         act2.Sprite.Remove(i, act2, EditOption.AdjustIndexes);
         }
     } 
-    // ขยายขนาด
+    // ขยายขนาด ปรับใช้ offset จาก act[0,0,0]
     foreach (Layer layer in act2.GetAllLayers()) {
-        layer.OffsetX = (int)(layer.OffsetX * mag / layer.ScaleX);
-        layer.OffsetY = (int)(layer.OffsetY * mag / layer.ScaleY);
+        layer.OffsetX = (int)(jx * mag / layer.ScaleX);
+        layer.OffsetY = (int)(jy * mag / layer.ScaleY);
         layer.ScaleX = mag;
         layer.ScaleY = mag;
     }    
