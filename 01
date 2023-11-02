@@ -1,5 +1,5 @@
 var path = @"C:\data\sprite\몬스터"; // ที่อยู่ไฟล์
-var m = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ต่ำกว่า 0 = ลดขนาด
+var m = 1; // ตัวเลขขยาย 1 = ขนาดปกติ ต่ำกว่า 1 = ลดขนาด
 
 foreach (var actFile in Directory.GetFiles(path, "*.act")) {
     var sprFile = actFile.ReplaceExtension(".spr");
